@@ -6,12 +6,13 @@ public class StringShooting : MonoBehaviour
 
 	public LayerMask layerMask;
 
-	public float stringForceStrength = 15;
+	public float stringForceStrength = 0.0f;
 	private Vector3 stringPoint;
 	private bool stringAttached = false;
 
-	private float stringForceStrengthBegin = 0f;
+	private float stringForceStrengthBegin = 50f;
 	private float stringForceStrengthEnd = 100f;
+	private float stringForceTime = 0.0f; 
 
 	/* Polish
 	 * Have a line renderer from the avatar to the connection-point
@@ -20,6 +21,13 @@ public class StringShooting : MonoBehaviour
 	/* Design
 	 * The longer the finger has been held down, the stronger the string force is
 	 * When the finger is released, the connection is severed
+	 * 
+	 * -
+	 * 
+	 * It is really annoying that it takes so long to turn the gravity around, it makes swinging hard. Maybe stop downwards momentum on attach? Or limit the distance we can get from the point, real rope like?
+	 * Currently it feels very elastic, which can be nice enough if I want to feel more gooey, like feelings. But it might just be too elastic? Hard to control?
+	 * Just stopping the velocity is also really hard to control.
+	 * It is super easy to loose control of the horizontal speed.
 	 */
 
     // Start is called before the first frame update
@@ -49,6 +57,10 @@ public class StringShooting : MonoBehaviour
 			//Attach
 			stringPoint = point;
 			stringAttached = true;
+			stringForceStrength = stringForceStrengthBegin;
+			stringForceTime = Time.time;
+
+			rb.velocity = Vector3.zero;
 		}
 
 		//When we let go of the screen, un-attach
@@ -56,6 +68,12 @@ public class StringShooting : MonoBehaviour
 			stringAttached = false;
 		}
 
+		//Increase string force
+		if (stringAttached) {
+			stringForceStrength = Mathf.Lerp(stringForceStrengthBegin, stringForceStrengthEnd, Time.time - stringForceTime);
+		}
+
+		//Apply string force
 		if (stringAttached) {
 			StringAttract();
 		}
