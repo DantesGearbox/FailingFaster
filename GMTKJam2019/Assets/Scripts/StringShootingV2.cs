@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-//VERSION: The one WITH velocity stopping on string shoot
+//VERSION: The one WITHOUT velocity stopping on string shoot
 
-public class StringShooting : MonoBehaviour
+public class StringShootingV2 : MonoBehaviour
 {
 	private Rigidbody2D rb;
 
@@ -61,8 +61,6 @@ public class StringShooting : MonoBehaviour
 			stringAttached = true;
 			stringForceStrength = stringForceStrengthBegin;
 			stringForceTime = Time.time;
-
-			rb.velocity = Vector3.zero;
 		}
 
 		//When we let go of the screen, un-attach
