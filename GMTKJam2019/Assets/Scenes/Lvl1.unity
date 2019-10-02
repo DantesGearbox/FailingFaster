@@ -765,6 +765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1022796388}
   - component: {fileID: 1022796390}
+  - component: {fileID: 1022796391}
   - component: {fileID: 1022796387}
   - component: {fileID: 1022796386}
   - component: {fileID: 1022796389}
@@ -893,7 +894,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022796385}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d81eb7e7b75f81b42bc183bb579306b5, type: 3}
   m_Name: 
@@ -902,6 +903,30 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   stringForceStrength: 50
+--- !u!114 &1022796391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022796385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b600831151e574086365d9ce155510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  stringForceStrength: 0
+  stringForceStrengthBegin: 50
+  stringForceStrengthEnd: 100
+  stringForceTime: 0
+  timeMaxStringStength: 1
+  stringForceHorizontalMultiplier: 1
+  stringForceVerticalMultiplier: 1.778
+  velocityXStopOnString: 0
+  velocityYStopOnString: 0
 --- !u!1 &1212722891
 GameObject:
   m_ObjectHideFlags: 0
