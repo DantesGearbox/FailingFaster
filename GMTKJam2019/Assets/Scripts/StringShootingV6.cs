@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-//VERSION: The one with X and Y string force split up in two
+//VERSION 6: The one where you will continue in the start direction
 
-public class StringShootingV4 : MonoBehaviour {
+public class StringShootingV6 : MonoBehaviour {
 	private Rigidbody2D rb;
 	private LineRenderer lr;
 

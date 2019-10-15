@@ -2,7 +2,7 @@
 
 //VERSION: The one WITH velocity stopping on string shoot
 
-public class StringShooting : MonoBehaviour
+public class StringShootingV1 : MonoBehaviour
 {
 	private Rigidbody2D rb;
 

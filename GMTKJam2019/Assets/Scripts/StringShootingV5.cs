@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 
-//VERSION: The one with X and Y string force split up in two
+//VERSION 5: Use minimum rope length
 
-public class StringShootingV4 : MonoBehaviour {
+public class StringShootingV5 : MonoBehaviour {
 	private Rigidbody2D rb;
 	private LineRenderer lr;
 
 	public Transform debugObject;
 	public LayerMask layerMask;
+
+	public float minimumRopeLength = 2;
+	public float ropePullOffset = 0;
 
 	public float stringForceStrength = 0.0f;
 	private Vector3 stringPoint;
@@ -63,7 +66,7 @@ public class StringShootingV4 : MonoBehaviour {
 			debugObject.position += new Vector3(0, 0, -5);
 			Debug.DrawRay(transform.position, direction * 10);
 
-			lr.SetPosition(1, debugObject.position);
+			lr.SetPosition(1, new Vector3(debugObject.position.x, debugObject.position.y, 0));
 
 			//Attach
 			stringPoint = point;
@@ -88,7 +91,7 @@ public class StringShootingV4 : MonoBehaviour {
 		if (stringAttached) {
 
 			//Update lineRenderer position
-			lr.SetPosition(0, this.transform.position);
+			lr.SetPosition(0, new Vector3(transform.position.x, transform.position.y, 0));
 
 			stringForceStrength = Mathf.Lerp(stringForceStrengthBegin, stringForceStrengthEnd, (Time.time - stringForceTime) * timeMaxStringStength);
 		}
@@ -102,11 +105,14 @@ public class StringShootingV4 : MonoBehaviour {
 
 	void StringAttract() {
 		Vector2 direction = (stringPoint - transform.position).normalized;
+		float length = (stringPoint - transform.position).magnitude;
 
 		Debug.DrawRay(transform.position, direction * 10);
 		float xForce = direction.x * stringForceStrength * stringForceHorizontalMultiplier;
 		float yForce = direction.y * stringForceStrength * stringForceVerticalMultiplier;
 
-		rb.AddForce(new Vector2(xForce, yForce));
+		if(length > minimumRopeLength + ropePullOffset) {
+			rb.AddForce(new Vector2(xForce, yForce));
+		}
 	}
 }
